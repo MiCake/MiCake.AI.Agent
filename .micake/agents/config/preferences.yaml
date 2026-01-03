@@ -1,0 +1,217 @@
+# =============================================================================
+# MiCake Agent - 用户偏好设置
+# =============================================================================
+# 将此文件复制到项目根目录的 .micake/config.yaml 进行自定义配置
+# Agent 会在开始工作前读取这些配置
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 基础信息
+# -----------------------------------------------------------------------------
+project:
+  # 项目名称（用于生成代码和文档）
+  name: "MyProject"
+  
+  # 项目描述
+  description: "A DDD application built with MiCake"
+  
+  # 默认命名空间
+  namespace: "MyCompany.MyProject"
+
+# -----------------------------------------------------------------------------
+# 用户信息
+# -----------------------------------------------------------------------------
+user:
+  # 用户名称（用于文档和注释）
+  name: "Developer"
+  
+  # 技能水平: beginner | intermediate | advanced
+  # 影响 Agent 解释的详细程度
+  skill_level: "intermediate"
+
+# -----------------------------------------------------------------------------
+# 语言设置
+# -----------------------------------------------------------------------------
+language:
+  # Agent 交流语言: zh-CN | en-US | ja-JP 等
+  communication: "zh-CN"
+  
+  # 代码注释语言: zh-CN | en-US
+  code_comments: "en-US"
+  
+  # 文档输出语言: zh-CN | en-US
+  documentation: "zh-CN"
+
+# -----------------------------------------------------------------------------
+# DDD 设计偏好
+# -----------------------------------------------------------------------------
+ddd:
+  # 是否偏好使用领域事件
+  # true: 鼓励使用领域事件进行解耦
+  # false: 优先使用直接方法调用
+  prefer_domain_events: true
+  
+  # 是否使用静态 Create 方法创建领域对象
+  # true: 使用 Order.Create(...) 工厂方法
+  # false: 使用 new Order(...) 构造函数
+  use_static_factory_methods: true
+  
+  # 是否使用私有 setter
+  # true: public string Name { get; private set; }
+  # false: public string Name { get; set; }
+  use_private_setters: true
+  
+  # 是否自动验证不变量
+  # true: 在构造函数和方法中自动添加验证
+  # false: 手动添加验证
+  auto_validate_invariants: true
+  
+  # 领域事件命名风格: past-tense | present-tense
+  # past-tense: OrderCreatedEvent, OrderShippedEvent
+  # present-tense: OrderCreateEvent, OrderShipEvent
+  domain_event_naming: "past-tense"
+  
+  # 聚合根 ID 类型偏好
+  # - int: 使用整数 ID
+  # - long: 使用长整数 ID
+  # - guid: 使用 GUID
+  # - string: 使用字符串 ID
+  # - strongly-typed: 使用强类型 ID (如 OrderId)
+  aggregate_id_type: "long"
+
+# -----------------------------------------------------------------------------
+# 代码风格偏好
+# -----------------------------------------------------------------------------
+code_style:
+  # 是否使用 nullable reference types
+  use_nullable_reference_types: true
+  
+  # 是否使用 record 类型定义值对象
+  use_records_for_value_objects: true
+  
+  # 是否使用 primary constructors (C# 12+)
+  use_primary_constructors: false
+  
+  # 是否生成 XML 文档注释
+  generate_xml_docs: true
+  
+  # 缩进风格: spaces | tabs
+  indentation: "spaces"
+  
+  # 缩进大小
+  indent_size: 4
+
+# -----------------------------------------------------------------------------
+# 仓储偏好
+# -----------------------------------------------------------------------------
+repository:
+  # 是否使用泛型仓储基类
+  use_generic_repository: true
+  
+  # 是否生成自定义仓储接口
+  generate_custom_interface: true
+  
+  # 是否包含软删除支持
+  include_soft_delete: true
+  
+  # 是否使用规约模式 (Specification Pattern)
+  use_specification_pattern: false
+
+# -----------------------------------------------------------------------------
+# 模块偏好
+# -----------------------------------------------------------------------------
+module:
+  # 是否自动注册仓储
+  auto_register_repositories: true
+  
+  # 是否使用 DI 依赖包装器
+  use_dependency_wrapper: true
+  
+  # 模块生命周期钩子偏好
+  # basic: 仅使用 ConfigureServices
+  # advanced: 使用完整生命周期 (PreConfigureServices, ConfigureServices, PostConfigureServices 等)
+  lifecycle_hooks: "basic"
+
+# -----------------------------------------------------------------------------
+# 输出设置
+# -----------------------------------------------------------------------------
+output:
+  # 默认输出文件夹
+  folder: ".micake-output"
+  
+  # 是否在输出时显示详细日志
+  verbose: false
+  
+  # 是否生成变更日志
+  generate_changelog: true
+
+# -----------------------------------------------------------------------------
+# EF Core 偏好
+# -----------------------------------------------------------------------------
+efcore:
+  # 是否使用 Fluent API 配置（而非 Data Annotations）
+  use_fluent_api: true
+  
+  # 是否为每个实体生成单独的配置类
+  separate_configuration_classes: true
+  
+  # 是否启用审计字段 (CreatedAt, UpdatedAt 等)
+  enable_audit_fields: true
+  
+  # 表名命名约定: singular | plural
+  table_naming: "plural"
+
+# -----------------------------------------------------------------------------
+# 审计偏好
+# -----------------------------------------------------------------------------
+audit:
+  # 是否启用审计功能
+  enabled: true
+  
+  # 审计字段配置
+  fields:
+    created_at: "CreatedAt"
+    created_by: "CreatedBy"
+    updated_at: "UpdatedAt"
+    updated_by: "UpdatedBy"
+    deleted_at: "DeletedAt"
+    deleted_by: "DeletedBy"
+    is_deleted: "IsDeleted"
+
+# -----------------------------------------------------------------------------
+# 外部需求文档配置
+# -----------------------------------------------------------------------------
+requirements:
+  # 需求文档存放目录
+  folder: ".micake/requirements"
+  
+  # 支持的文档格式
+  supported_formats:
+    - "*.md"
+    - "*.txt"
+    - "*.json"
+    - "*.yaml"
+  
+  # 自动解析关键词
+  auto_parse_keywords:
+    - "User Story"
+    - "PRD"
+    - "Requirements"
+    - "Epic"
+    - "Feature"
+
+# -----------------------------------------------------------------------------
+# Agent 行为设置
+# -----------------------------------------------------------------------------
+agent:
+  # 是否在生成代码前询问确认
+  confirm_before_generate: true
+  
+  # 是否显示设计建议
+  show_design_suggestions: true
+  
+  # 是否自动运行代码审查
+  auto_review: true
+  
+  # 详细程度: minimal | standard | detailed
+  verbosity: "standard"

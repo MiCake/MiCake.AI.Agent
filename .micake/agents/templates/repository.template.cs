@@ -114,8 +114,7 @@ public interface IOrderRepository : IRepository<Order, long>
         CancellationToken cancellationToken = default);
 }
 
-// Example 2: Order Repository Implementation (Infrastructure Layer)
-// Location: Infrastructure/Repositories/OrderRepository.cs
+// Example 2: Order Repository Implementation
 
 using Microsoft.EntityFrameworkCore;
 using MiCake.EntityFrameworkCore.Repository;

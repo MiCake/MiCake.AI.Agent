@@ -1,198 +1,89 @@
 # =============================================================================
-# MiCake Agent - 用户偏好设置
+# MiCake Agent - User Preferences
 # =============================================================================
-# 将此文件复制到项目根目录的 .micake/config.yaml 进行自定义配置
-# Agent 会在开始工作前读取这些配置
+# Agents will load these settings before starting work.
+# Customize these values to match your project requirements.
 # =============================================================================
 
 # -----------------------------------------------------------------------------
-# 基础信息
-# -----------------------------------------------------------------------------
-project:
-  # 项目名称（用于生成代码和文档）
-  name: "MyProject"
-  
-  # 项目描述
-  description: "A DDD application built with MiCake"
-  
-  # 默认命名空间
-  namespace: "MyCompany.MyProject"
-
-# -----------------------------------------------------------------------------
-# 用户信息
-# -----------------------------------------------------------------------------
-user:
-  # 用户名称（用于文档和注释）
-  name: "Developer"
-  
-  # 技能水平: beginner | intermediate | advanced
-  # 影响 Agent 解释的详细程度
-  skill_level: "intermediate"
-
-# -----------------------------------------------------------------------------
-# 语言设置
+# Language Settings
 # -----------------------------------------------------------------------------
 language:
-  # Agent 交流语言: zh-CN | en-US | ja-JP 等
-  communication: "zh-CN"
+  # Agent communication language: zh-CN | en-US | ja-JP
+  communication: "en-US"
   
-  # 代码注释语言: zh-CN | en-US
+  # Code comments language: zh-CN | en-US
   code_comments: "en-US"
   
-  # 文档输出语言: zh-CN | en-US
-  documentation: "zh-CN"
+  # Documentation output language: zh-CN | en-US
+  documentation: "en-US"
 
 # -----------------------------------------------------------------------------
-# DDD 设计偏好
+# DDD Design Preferences
 # -----------------------------------------------------------------------------
 ddd:
-  # 是否偏好使用领域事件
-  # true: 鼓励使用领域事件进行解耦
-  # false: 优先使用直接方法调用
+  # Prefer using domain events for decoupling
+  # true: Encourage domain events for cross-aggregate communication
+  # false: Prefer direct method calls
   prefer_domain_events: true
   
-  # 是否使用静态 Create 方法创建领域对象
-  # true: 使用 Order.Create(...) 工厂方法
-  # false: 使用 new Order(...) 构造函数
+  # Use static factory methods for domain object creation
+  # true: Use Order.Create(...) factory methods
+  # false: Use new Order(...) constructors
   use_static_factory_methods: true
   
-  # 是否使用私有 setter
-  # true: public string Name { get; private set; }
-  # false: public string Name { get; set; }
-  use_private_setters: true
-  
-  # 是否自动验证不变量
-  # true: 在构造函数和方法中自动添加验证
-  # false: 手动添加验证
-  auto_validate_invariants: true
-  
-  # 领域事件命名风格: past-tense | present-tense
+  # Domain event naming style: past-tense | present-tense
   # past-tense: OrderCreatedEvent, OrderShippedEvent
   # present-tense: OrderCreateEvent, OrderShipEvent
   domain_event_naming: "past-tense"
   
-  # 聚合根 ID 类型偏好
-  # - int: 使用整数 ID
-  # - long: 使用长整数 ID
-  # - guid: 使用 GUID
-  # - string: 使用字符串 ID
-  # - strongly-typed: 使用强类型 ID (如 OrderId)
+  # Default aggregate ID type: long | Guid | int | string
   aggregate_id_type: "long"
 
 # -----------------------------------------------------------------------------
-# 代码风格偏好
+# Code Style Settings
 # -----------------------------------------------------------------------------
 code_style:
-  # 是否使用 nullable reference types
-  use_nullable_reference_types: true
-  
-  # 是否使用 record 类型定义值对象
-  use_records_for_value_objects: true
-  
-  # 是否使用 primary constructors (C# 12+)
-  use_primary_constructors: false
-  
-  # 是否生成 XML 文档注释
+  # Generate XML documentation comments
   generate_xml_docs: true
   
-  # 缩进风格: spaces | tabs
-  indentation: "spaces"
+  # Use file-scoped namespaces (C# 10+)
+  file_scoped_namespaces: true
   
-  # 缩进大小
-  indent_size: 4
+  # Use primary constructors (C# 12+)
+  use_primary_constructors: false
+  
+  # Nullable reference types enabled
+  nullable_enabled: true
 
 # -----------------------------------------------------------------------------
-# 仓储偏好
-# -----------------------------------------------------------------------------
-repository:
-  # 是否使用泛型仓储基类
-  use_generic_repository: true
-  
-  # 是否生成自定义仓储接口
-  generate_custom_interface: true
-  
-  # 是否包含软删除支持
-  include_soft_delete: true
-  
-  # 是否使用规约模式 (Specification Pattern)
-  use_specification_pattern: false
-
-# -----------------------------------------------------------------------------
-# 模块偏好
-# -----------------------------------------------------------------------------
-module:
-  # 是否自动注册仓储
-  auto_register_repositories: true
-  
-  # 是否使用 DI 依赖包装器
-  use_dependency_wrapper: true
-  
-  # 模块生命周期钩子偏好
-  # basic: 仅使用 ConfigureServices
-  # advanced: 使用完整生命周期 (PreConfigureServices, ConfigureServices, PostConfigureServices 等)
-  lifecycle_hooks: "basic"
-
-# -----------------------------------------------------------------------------
-# 输出设置
+# Output Settings
 # -----------------------------------------------------------------------------
 output:
-  # 默认输出文件夹
+  # Default output folder for generated files
   folder: ".micake-output"
   
-  # 是否在输出时显示详细日志
+  # Show verbose logging during output
   verbose: false
   
-  # 是否生成变更日志
+  # Generate changelog for modifications
   generate_changelog: true
 
 # -----------------------------------------------------------------------------
-# EF Core 偏好
-# -----------------------------------------------------------------------------
-efcore:
-  # 是否使用 Fluent API 配置（而非 Data Annotations）
-  use_fluent_api: true
-  
-  # 是否为每个实体生成单独的配置类
-  separate_configuration_classes: true
-  
-  # 是否启用审计字段 (CreatedAt, UpdatedAt 等)
-  enable_audit_fields: true
-  
-  # 表名命名约定: singular | plural
-  table_naming: "plural"
-
-# -----------------------------------------------------------------------------
-# 审计偏好
-# -----------------------------------------------------------------------------
-audit:
-  # 是否启用审计功能
-  enabled: true
-  
-  # 审计字段配置
-  fields:
-    created_at: "CreatedAt"
-    created_by: "CreatedBy"
-    updated_at: "UpdatedAt"
-    updated_by: "UpdatedBy"
-    deleted_at: "DeletedAt"
-    deleted_by: "DeletedBy"
-    is_deleted: "IsDeleted"
-
-# -----------------------------------------------------------------------------
-# 外部需求文档配置
+# Requirements Document Configuration
 # -----------------------------------------------------------------------------
 requirements:
-  # 需求文档存放目录
+  # Directory for requirement documents
   folder: ".micake/requirements"
   
-  # 支持的文档格式
+  # Supported document formats
   supported_formats:
     - "*.md"
     - "*.txt"
     - "*.json"
     - "*.yaml"
   
-  # 自动解析关键词
+  # Keywords for automatic parsing
   auto_parse_keywords:
     - "User Story"
     - "PRD"
@@ -201,17 +92,42 @@ requirements:
     - "Feature"
 
 # -----------------------------------------------------------------------------
-# Agent 行为设置
+# Agent Behavior Settings
 # -----------------------------------------------------------------------------
 agent:
-  # 是否在生成代码前询问确认
+  # Confirm with user before generating code
   confirm_before_generate: true
   
-  # 是否显示设计建议
+  # Show design suggestions and recommendations
   show_design_suggestions: true
   
-  # 是否自动运行代码审查
+  # Automatically run code review after generation
   auto_review: true
   
-  # 详细程度: minimal | standard | detailed
+  # Output verbosity: minimal | standard | detailed
   verbosity: "standard"
+
+# -----------------------------------------------------------------------------
+# Custom Practices Configuration
+# -----------------------------------------------------------------------------
+# Specify your own design practices or project specifications.
+# These will be merged with the built-in knowledge base.
+# When conflicts occur, your custom content takes priority.
+# -----------------------------------------------------------------------------
+custom_practices:
+  # Path to your custom design practices or project specifications file
+  # Supports Markdown (.md) or YAML (.yaml/.yml) formats
+  # Leave empty or comment out to use only built-in knowledge
+  # file_path: ".micake/my-project-standards.md"
+  file_path: ""
+  
+  # How to handle conflicts between custom and built-in content
+  # override: Custom content completely replaces conflicting built-in content
+  # merge: Attempt to combine both (custom content takes priority for direct conflicts)
+  conflict_resolution: "override"
+  
+  # Sections in your custom file that should override built-in knowledge
+  # Use this to specify which areas your custom file covers
+  # Options: ddd-patterns, repository-patterns, module-system, code-style, naming-conventions, all
+  override_sections:
+    - "all"

@@ -29,6 +29,12 @@ MiCake Agent System is an AI assistant designed for MiCake framework users, help
 | `setup` | Configure preferences | Conductor |
 | `init-project` | Initialize MiCake project | Conductor |
 | `services` | List all available agents | Conductor |
+| `change-request` | Start requirement change workflow | Conductor |
+| `change-status` | View current change status | Conductor |
+| `change-history` | View completed changes | Conductor |
+| `change-rollback` | Rollback a change | Conductor |
+| `change-cleanup` | Delete change history | Conductor |
+| `sync-context` | Refresh project context | Conductor |
 | `analyze-requirements` | Analyze PRD/User Stories | Sage |
 | `design-aggregate` | Design aggregate boundaries | Architect |
 | `implement` | Implement feature from PRD/Story | Developer |
@@ -75,7 +81,8 @@ MiCake Agent System is an AI assistant designed for MiCake framework users, help
 ├── workflows/                       # Workflow definitions
 │   ├── new-project.workflow.md
 │   ├── create-aggregate.workflow.md
-│   └── prd-to-code.workflow.md
+│   ├── prd-to-code.workflow.md
+│   └── requirement-change.workflow.md
 │
 └── templates/                       # Code templates
     ├── aggregate.template.cs
@@ -84,11 +91,31 @@ MiCake Agent System is an AI assistant designed for MiCake framework users, help
     ├── repository.template.cs
     ├── domain-event.template.cs
     └── module.template.cs
+
+.micake/context/                     # Project context (auto-generated)
+├── project-structure.yaml           # Project code structure cache
+└── domain-model.yaml                # Domain model summary
+
+.micake/changes/                     # Change management
+├── pending/                         # Pending changes
+├── in-progress/                     # In-progress changes
+├── completed/                       # Completed changes
+└── failed/                          # Failed/rolled-back changes
 ```
 
 ## Configuration
 
 Configure preferences in `.micake/agents/config/preferences.yaml`.
+
+## Change Management
+
+Use `change-request` command to handle requirement changes. The workflow includes:
+1. Conflict detection and change intake
+2. Requirements diff analysis and impact assessment
+3. Task planning and prioritization
+4. Code implementation and review
+5. Validation and documentation sync
+6. Optional history cleanup via `change-cleanup`
 
 ## Requirements Documents
 

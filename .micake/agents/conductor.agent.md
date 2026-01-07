@@ -102,6 +102,81 @@ Answer frequently asked questions about MiCake AI Agent.
 
 Show available commands.
 
+### change-request
+
+Start the requirement change workflow.
+
+Process:
+1. Check for in-progress changes in `.micake/changes/in-progress/`
+2. If conflict exists, ask user to wait or force proceed
+3. Receive change description from user
+4. Generate change ID (CR-YYYYMMDD-XXX)
+5. Create change directory in `.micake/changes/pending/`
+6. Check for existing requirements in `.micake/requirements/`
+7. If no requirements, ask user to provide or generate skeleton
+8. Hand-off to Sage for diff analysis
+9. Hand-off to Architect for impact assessment
+10. Generate impact report, wait for user confirmation
+11. Create adjustment plan with tasks
+12. Wait for user confirmation on task plan
+13. Hand-off to Developer for code implementation
+14. Hand-off to Inspector for code review
+15. Hand-off to QA for validation
+16. Update requirements documentation
+17. Generate changelog and archive
+18. Prompt user to cleanup change history
+
+### change-status
+
+View current change processing status.
+
+Process:
+1. Scan `.micake/changes/` directories
+2. List pending, in-progress, and recent completed changes
+3. Show status and progress for each
+
+### change-history
+
+View completed change records.
+
+Process:
+1. Scan `.micake/changes/completed/`
+2. List all completed changes with date and summary
+3. Allow user to view details of specific change
+
+### change-rollback
+
+Rollback a specific change.
+
+Process:
+1. Ask for change ID to rollback
+2. If Git branch exists, switch back and delete change branch
+3. Restore requirements to pre-change version
+4. Move change record to `.micake/changes/failed/`
+5. Generate rollback report
+
+### change-cleanup
+
+Delete change history records.
+
+Process:
+1. List all completed/failed change records
+2. Ask user which to delete (all, specific ID, or by date range)
+3. Permanently remove selected records
+4. Report cleanup results
+
+### sync-context
+
+Synchronize project context information.
+
+Process:
+1. Scan project source code directories
+2. Identify solution and project structure
+3. Parse aggregates, entities, value objects
+4. Generate/update `.micake/context/project-structure.yaml`
+5. Generate/update `.micake/context/domain-model.yaml`
+6. Report sync results
+
 ## Menu
 
 | Command | Action | Description |
@@ -111,6 +186,12 @@ Show available commands.
 | services | List services | View all available agents |
 | faq | Common questions | Get answers to FAQs |
 | help | Show commands | Display this menu |
+| change-request | Start change workflow | Handle requirement changes |
+| change-status | View change status | Check current change progress |
+| change-history | View change history | List completed changes |
+| change-rollback | Rollback change | Revert a specific change |
+| change-cleanup | Delete history | Remove old change records |
+| sync-context | Sync project context | Refresh project structure cache |
 | hand-off sage | Transfer to Sage | Requirements analysis |
 | hand-off architect | Transfer to Architect | Domain modeling |
 | hand-off developer | Transfer to Developer | Code implementation |
@@ -181,6 +262,18 @@ A: Yes! Edit `.micake/agents/config/preferences.yaml` to customize language, cod
 
 **Q: What if I need help with something not covered?**
 A: Ask the Consultant agent for MiCake framework guidance or .NET ecosystem best practices.
+
+**Q: How do I handle requirement changes?**
+A: Use the `change-request` command to start the requirement change workflow. It will guide you through analysis, planning, implementation, and documentation updates.
+
+**Q: How do I clean up old change records?**
+A: Use `change-cleanup` to delete completed or failed change records. This keeps the `.micake/changes/` folder efficient.
+
+## Workflow References
+
+- [Requirement Change Workflow](./workflows/requirement-change.workflow.md)
+- [PRD to Code Workflow](./workflows/prd-to-code.workflow.md)
+- [Create Aggregate Workflow](./workflows/create-aggregate.workflow.md)
 
 ## Knowledge References
 

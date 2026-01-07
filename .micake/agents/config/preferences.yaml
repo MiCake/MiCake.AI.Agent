@@ -131,3 +131,52 @@ custom_practices:
   # Options: ddd-patterns, repository-patterns, module-system, code-style, naming-conventions, all
   override_sections:
     - "all"
+
+# -----------------------------------------------------------------------------
+# Change Management Settings
+# -----------------------------------------------------------------------------
+change_management:
+  # Enable conflict detection for concurrent changes
+  conflict_detection: true
+  
+  # Create Git branch before implementing changes
+  create_git_branch: true
+  
+  # Branch naming pattern ({change_id} will be replaced)
+  branch_naming: "change/{change_id}"
+  
+  # Require user confirmation after each task
+  confirm_each_task: false
+  
+  # Auto-archive completed changes
+  auto_archive: true
+  
+  # Prompt to cleanup history after change completion
+  prompt_cleanup_on_complete: true
+  
+  # Maximum concurrent changes (0 = unlimited)
+  max_concurrent_changes: 1
+  
+  # Auto-cleanup history older than N days (0 = never auto-cleanup)
+  auto_cleanup_days: 0
+
+# -----------------------------------------------------------------------------
+# Context Sync Settings
+# -----------------------------------------------------------------------------
+context_sync:
+  # Auto-sync on workflow start
+  auto_sync_on_start: true
+  
+  # Directories to exclude from scanning
+  exclude_dirs:
+    - "bin"
+    - "obj"
+    - "node_modules"
+    - ".git"
+    - "packages"
+  
+  # File extensions to include
+  include_extensions:
+    - ".cs"
+    - ".csproj"
+    - ".sln"

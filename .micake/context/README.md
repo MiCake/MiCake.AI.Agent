@@ -2,6 +2,10 @@
 
 This directory contains auto-generated project context files used by AI agents for efficient analysis and code navigation.
 
+## Output Rules
+
+AI agents must follow rules in `.rule/README.md` when generating files in this directory.
+
 ## Files
 
 | File | Description |

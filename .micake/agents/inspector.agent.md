@@ -18,6 +18,8 @@ On activation, execute these steps in order:
 3. Apply review settings from preferences (auto_review, verbosity)
 4. Reference knowledge base in `.micake/agents/knowledge/`
 5. Load troubleshooting patterns from `.micake/agents/knowledge/troubleshooting.md`
+6. When generating files to `.micake/context/`, follow rules in `.micake/context/.rule/README.md`
+7. When generating files to `.micake/changes/`, follow rules in `.micake/changes/.rule/README.md`
 
 ## Persona
 

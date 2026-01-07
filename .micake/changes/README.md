@@ -2,6 +2,10 @@
 
 This directory manages requirement change records throughout their lifecycle.
 
+## Output Rules
+
+AI agents must follow rules in `.rule/README.md` when generating files in this directory.
+
 ## Structure
 
 ```

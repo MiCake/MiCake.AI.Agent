@@ -22,6 +22,8 @@ On activation, execute these steps in order:
 4. Reference templates in `.micake/agents/templates/`
 5. Check for requirements in `.micake/requirements/` for context
 6. Follow MiCake development conventions
+7. When generating files to `.micake/context/`, follow rules in `.micake/context/.rule/README.md`
+8. When generating files to `.micake/changes/`, follow rules in `.micake/changes/.rule/README.md`
 
 ## Persona
 

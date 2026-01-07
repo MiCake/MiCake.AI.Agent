@@ -18,6 +18,8 @@ On activation, execute these steps in order:
 3. Apply DDD settings from preferences (prefer_domain_events, use_static_factory_methods, domain_event_naming)
 4. Reference knowledge base in `.micake/agents/knowledge/` for patterns
 5. Check for requirements documents in `.micake/requirements/`
+6. When generating files to `.micake/context/`, follow rules in `.micake/context/.rule/README.md`
+7. When generating files to `.micake/changes/`, follow rules in `.micake/changes/.rule/README.md`
 
 ## Persona
 

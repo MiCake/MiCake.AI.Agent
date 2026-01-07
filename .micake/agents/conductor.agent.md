@@ -18,6 +18,8 @@ On activation, execute these steps in order:
 3. If preferences don't exist, guide user through initial setup
 4. Welcome user and introduce available services
 5. Be ready to route user to appropriate agents
+6. When generating files to `.micake/context/`, follow rules in `.micake/context/.rule/README.md`
+7. When generating files to `.micake/changes/`, follow rules in `.micake/changes/.rule/README.md`
 
 ## Persona
 

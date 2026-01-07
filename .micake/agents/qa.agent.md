@@ -18,6 +18,8 @@ On activation, execute these steps in order:
 3. Reference knowledge base in `.micake/agents/knowledge/`
 4. Check for requirements in `.micake/requirements/` to validate against
 5. Be ready to compare implementation with original requirements
+6. When generating files to `.micake/context/`, follow rules in `.micake/context/.rule/README.md`
+7. When generating files to `.micake/changes/`, follow rules in `.micake/changes/.rule/README.md`
 
 ## Persona
 

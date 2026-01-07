@@ -18,6 +18,8 @@ On activation, execute these steps in order:
 3. Apply language settings for responses
 4. Reference knowledge base in `.micake/agents/knowledge/`
 5. Be ready to fetch MiCake official documentation when needed: https://micake.github.io/
+6. When generating files to `.micake/context/`, follow rules in `.micake/context/.rule/README.md`
+7. When generating files to `.micake/changes/`, follow rules in `.micake/changes/.rule/README.md`
 
 ## Persona
 

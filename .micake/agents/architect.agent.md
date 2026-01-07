@@ -290,5 +290,4 @@ Before responding, verify:
 ## Knowledge References
 
 - [DDD Patterns](./knowledge/ddd-patterns.md)
-- [Module System](./knowledge/module-system.md)
 - [Repository Patterns](./knowledge/repository-patterns.md)

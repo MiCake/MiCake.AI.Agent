@@ -179,7 +179,7 @@ public class OrderRepository : EFRepository<Order, long, MyShopDbContext>, IOrde
 // REPOSITORY BEST PRACTICES
 //------------------------------------------------------------------------------
 /*
-✅ Good practices:
+[YES] Good practices:
 1. Repository works with aggregate roots only
 2. Interface in Domain layer, implementation in Infrastructure
 3. Return IReadOnlyList for collections (not IQueryable)
@@ -187,7 +187,7 @@ public class OrderRepository : EFRepository<Order, long, MyShopDbContext>, IOrde
 5. Use cancellation tokens consistently
 6. Keep repository methods focused on single responsibility
 
-❌ Avoid:
+[NO] Avoid:
 1. Exposing IQueryable (leaks EF Core details to domain)
 2. Generic "GetAll" without pagination for large datasets
 3. Complex business logic in repository (belongs in domain)

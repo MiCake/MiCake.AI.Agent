@@ -194,7 +194,7 @@ public sealed class OrderItemAddedEvent : DomainEvent
 // EVENT NAMING CONVENTIONS
 //------------------------------------------------------------------------------
 /*
-✅ Good event names (past tense - something happened):
+[YES] Good event names (past tense - something happened):
 - OrderCreatedEvent
 - OrderConfirmedEvent
 - PaymentReceivedEvent
@@ -202,7 +202,7 @@ public sealed class OrderItemAddedEvent : DomainEvent
 - UserRegisteredEvent
 - PasswordChangedEvent
 
-❌ Bad event names (avoid these patterns):
+[NO] Bad event names (avoid these patterns):
 - CreateOrderEvent (imperative - sounds like a command)
 - OrderEvent (too generic)
 - OrderCreated (missing Event suffix for clarity)

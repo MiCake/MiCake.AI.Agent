@@ -1,0 +1,75 @@
+# Project Structure Context
+
+# Basic project information
+project:
+  name: "${project_name}"
+  root: "${project_root}"
+  description: "${project_description}"
+
+# Module organization
+modules:
+  # Domain layer - core business logic
+  - name: "Domain"
+    path: "${domain_path}"
+    type: "domain"
+    contains:
+      - entities
+      - value_objects
+      - domain_services
+      - domain_events
+      - repository_interfaces
+    
+  # Application layer - use cases
+  - name: "Application"
+    path: "${application_path}"
+    type: "application"
+    contains:
+      - use_cases
+      - dtos
+      - mappers
+      - application_services
+    
+  # Infrastructure layer - technical implementation
+  - name: "Infrastructure"
+    path: "${infrastructure_path}"
+    type: "infrastructure"
+    contains:
+      - repository_implementations
+      - database_context
+      - external_services
+      - configuration
+    
+  # Presentation layer - API/UI
+  - name: "Presentation"
+    path: "${presentation_path}"
+    type: "presentation"
+    contains:
+      - controllers
+      - view_models
+      - middleware
+
+# Internal dependencies (which modules depend on which)
+dependencies:
+  internal:
+    - from: "Application"
+      to: "Domain"
+    - from: "Infrastructure"
+      to: "Domain"
+    - from: "Presentation"
+      to: "Application"
+
+# External package dependencies
+packages:
+  # List key dependencies
+  - name: "${primary_framework}"
+    version: "${framework_version}"
+    purpose: "Primary application framework"
+
+# Directory patterns
+directory_patterns:
+  # Where to find different types of files
+  entities: "${domain_path}/Entities"
+  value_objects: "${domain_path}/ValueObjects"
+  repositories: "${domain_path}/Repositories"
+  use_cases: "${application_path}/UseCases"
+  tests: "${tests_path}"

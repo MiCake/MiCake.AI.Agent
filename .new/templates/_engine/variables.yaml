@@ -1,0 +1,100 @@
+# Template Variables
+
+# This file defines variables available in templates.
+# Variables come from three sources: system, adapter, and runtime input.
+
+# System Variables (always available)
+system:
+  timestamp: "Generated timestamp (ISO 8601)"
+  agent_version: "Framework version"
+  generator: "Agent that generated the code"
+
+# Adapter Variables (from active adapter)
+# These are populated from config/adapters/{adapter}.yaml
+adapter:
+  # Namespace/Package
+  namespace: "From adapter.naming.namespace_style"
+  package: "From adapter.naming.namespace_style"
+  
+  # File patterns
+  file_extension: "From adapter.file_extension"
+  
+  # Type mappings
+  id_type: "From adapter.types.id"
+  string_type: "From adapter.types.string"
+  datetime_type: "From adapter.types.datetime"
+  list_type: "From adapter.types.list"
+  dictionary_type: "From adapter.types.dictionary"
+  
+  # Framework specifics
+  entity_base: "From adapter.framework.entity_base"
+  repository_base: "From adapter.framework.repository_base"
+
+# Pattern Variables (from active pattern)
+# These are populated from manifest.yaml patterns.active
+pattern:
+  # DDD specific
+  aggregate_interface: "IAggregateRoot"
+  entity_interface: "IEntity"
+  value_object_base: "ValueObject"
+  domain_event_base: "DomainEvent"
+  
+  # Clean Architecture specific
+  use_case_interface: "IUseCase"
+  request_model_suffix: "Request"
+  response_model_suffix: "Response"
+
+# Runtime Variables (from user input)
+# These are provided when generating code
+input:
+  # Entity generation
+  entity_name: "Name of the entity (PascalCase)"
+  entity_name_lower: "Name in camelCase"
+  entity_name_snake: "Name in snake_case"
+  entity_name_plural: "Plural form"
+  
+  # Properties
+  properties: "List of property definitions"
+  # Each property:
+  #   - name: "Property name"
+  #   - type: "Property type (mapped through adapter)"
+  #   - required: true/false
+  #   - description: "Property description"
+  
+  # Methods
+  methods: "List of method definitions"
+  # Each method:
+  #   - name: "Method name"
+  #   - parameters: "List of parameters"
+  #   - return_type: "Return type"
+  #   - description: "What the method does"
+  
+  # Relationships
+  relationships: "List of entity relationships"
+  # Each relationship:
+  #   - type: "one-to-one | one-to-many | many-to-many"
+  #   - target: "Related entity name"
+  #   - navigation_name: "Navigation property name"
+
+# Variable Syntax in Templates
+# Use ${variable_name} for simple substitution
+# Use ${variable.nested} for nested values
+# Use conditional blocks for optional sections:
+#   {{#if has_relationships}}
+#   // relationship code
+#   {{/if}}
+
+# Example variable usage in templates:
+# 
+# namespace ${namespace}.Domain.Entities
+# {
+#     public class ${entity_name} : ${entity_base}<${id_type}>
+#     {
+#         ${properties}
+#         
+#         public ${entity_name}(${constructor_params})
+#         {
+#             // initialization
+#         }
+#     }
+# }

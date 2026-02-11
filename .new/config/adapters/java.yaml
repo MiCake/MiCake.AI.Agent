@@ -1,0 +1,218 @@
+# =============================================================================
+# Java / Spring Adapter Configuration
+# =============================================================================
+# Technology stack adapter for Java ecosystem (Java, Spring Boot, JPA)
+# =============================================================================
+
+adapter:
+  id: "java"
+  name: "Java / Spring"
+  version: "1.0"
+  language: "Java"
+  language_version: "21"
+  framework: "Spring Boot"
+  framework_version: "3.2+"
+
+# -----------------------------------------------------------------------------
+# Terminology Mapping
+# -----------------------------------------------------------------------------
+terminology:
+  # Architecture components
+  module: "Module"
+  service: "Service"
+  repository: "Repository"
+  controller: "Controller"
+  handler: "Handler"
+  model: "Model"
+  entity: "Entity"
+  value_object: "Value Object"
+  aggregate: "Aggregate"
+  domain_event: "Domain Event"
+  
+  # DI registration types
+  di_transient: "Prototype"
+  di_scoped: "Request"
+  di_singleton: "Singleton"
+  
+  # File extensions
+  source_extension: ".java"
+  test_extension: "Test.java"
+  config_extension: ".properties"
+  
+  # Project types
+  project_types:
+    - id: "library"
+      name: "Library"
+      template: "java-library"
+    - id: "web"
+      name: "Spring Web"
+      template: "spring-web"
+    - id: "console"
+      name: "Console Application"
+      template: "java-application"
+    - id: "test"
+      name: "Test Project"
+      template: "junit5"
+
+# -----------------------------------------------------------------------------
+# Commands
+# -----------------------------------------------------------------------------
+commands:
+  # Maven commands
+  install: "mvn dependency:resolve"
+  build: "mvn compile"
+  build_release: "mvn package -DskipTests"
+  test: "mvn test"
+  test_coverage: "mvn test jacoco:report"
+  lint: "mvn checkstyle:check"
+  format: "mvn spotless:apply"
+  run: "mvn spring-boot:run"
+  
+  # Gradle alternatives
+  gradle:
+    install: "gradle dependencies"
+    build: "gradle build"
+    test: "gradle test"
+    run: "gradle bootRun"
+
+# -----------------------------------------------------------------------------
+# Naming Conventions
+# -----------------------------------------------------------------------------
+patterns:
+  namespace_convention: "lowercase.dots"    # com.example.project
+  file_naming: "PascalCase"
+  class_naming: "PascalCase"
+  interface_naming: "PascalCase"            # No I-prefix in Java
+  method_naming: "camelCase"
+  property_naming: "camelCase"
+  parameter_naming: "camelCase"
+  private_field_naming: "camelCase"
+  constant_naming: "UPPER_SNAKE_CASE"
+  
+  # Common suffixes
+  suffixes:
+    interface: ""
+    service: "Service"
+    service_impl: "ServiceImpl"
+    repository: "Repository"
+    controller: "Controller"
+    handler: "Handler"
+    validator: "Validator"
+    configuration: "Config"
+
+# -----------------------------------------------------------------------------
+# Project Structure
+# -----------------------------------------------------------------------------
+project_structure:
+  # Maven standard structure
+  source_dir: "src/main/java/"
+  resources_dir: "src/main/resources/"
+  test_dir: "src/test/java/"
+  test_resources_dir: "src/test/resources/"
+  output_dir: "target/"
+  
+  # Common layer packages
+  layers:
+    domain: "domain"
+    application: "application"
+    infrastructure: "infrastructure"
+    web: "web"
+    api: "api"
+  
+  # Configuration files
+  config_files:
+    - "pom.xml"
+    - "build.gradle"
+    - "settings.gradle"
+    - "application.yml"
+    - "application.properties"
+    - "application-*.yml"
+
+# -----------------------------------------------------------------------------
+# Code Style
+# -----------------------------------------------------------------------------
+code_style:
+  # Java features
+  use_records: true                  # Java 16+ records
+  use_sealed_classes: true           # Java 17+ sealed classes
+  use_pattern_matching: true         # Java 21+ pattern matching
+  
+  # Documentation
+  generate_javadoc: true
+  
+  # String handling
+  quote_style: "double"
+  use_text_blocks: true              # Java 15+ text blocks
+  
+  # Patterns
+  use_optional: true
+  use_streams: true
+  
+  # Lombok (optional)
+  use_lombok: true
+  lombok_annotations:
+    - "@Data"
+    - "@Builder"
+    - "@NoArgsConstructor"
+    - "@AllArgsConstructor"
+
+# -----------------------------------------------------------------------------
+# Framework-Specific Settings
+# -----------------------------------------------------------------------------
+framework_settings:
+  # Dependency Injection
+  dependency_injection:
+    container: "Spring IoC"
+    auto_registration: true
+    annotations:
+      service: "@Service"
+      repository: "@Repository"
+      component: "@Component"
+      configuration: "@Configuration"
+    
+  # ORM
+  orm:
+    name: "JPA / Hibernate"
+    provider: "Hibernate"
+    
+  # API
+  api:
+    style: "REST"
+    versioning: true
+    swagger: true
+    
+  # Logging
+  logging:
+    framework: "SLF4J"
+    implementation: "Logback"
+
+# -----------------------------------------------------------------------------
+# Type Mappings
+# -----------------------------------------------------------------------------
+type_mappings:
+  string: "String"
+  integer: "Integer"
+  long: "Long"
+  decimal: "BigDecimal"
+  boolean: "Boolean"
+  datetime: "LocalDateTime"
+  datetimeoffset: "OffsetDateTime"
+  uuid: "UUID"
+  binary: "byte[]"
+  
+  # Collections
+  list: "List<T>"
+  set: "Set<T>"
+  dictionary: "Map<K, V>"
+  readonly_list: "List<T>"           # Use Collections.unmodifiableList()
+  readonly_collection: "Collection<T>"
+
+# -----------------------------------------------------------------------------
+# Common Base Classes
+# -----------------------------------------------------------------------------
+base_classes:
+  entity: "BaseEntity<ID>"
+  aggregate_root: "AggregateRoot<ID>"
+  value_object: "ValueObject"
+  domain_event: "DomainEvent"
+  repository: "JpaRepository<T, ID>"

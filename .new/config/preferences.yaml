@@ -1,0 +1,135 @@
+# =============================================================================
+# AI Agent Framework - User Preferences
+# =============================================================================
+# User-specific preferences that override system defaults.
+# Customize these values to match your project and personal requirements.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Language Settings
+# -----------------------------------------------------------------------------
+language:
+  # Agent communication language: zh-CN | en-US | ja-JP | ko-KR
+  communication: "en-US"
+  
+  # Code comments language: zh-CN | en-US
+  code_comments: "en-US"
+  
+  # Documentation output language: zh-CN | en-US
+  documentation: "en-US"
+
+# -----------------------------------------------------------------------------
+# Code Style Settings (General)
+# -----------------------------------------------------------------------------
+code_style:
+  # Generate documentation comments (XML docs, JSDoc, docstrings, etc.)
+  generate_comments: true
+  
+  # Maximum line length
+  max_line_length: 120
+  
+  # Indentation style: space | tab
+  indent_style: "space"
+  
+  # Indentation size (spaces)
+  indent_size: 4
+  
+  # Use modern language features when available
+  use_modern_features: true
+
+# -----------------------------------------------------------------------------
+# Design Preferences (Architecture Agnostic)
+# -----------------------------------------------------------------------------
+design:
+  # Prefer event-driven communication for decoupling
+  prefer_events: true
+  
+  # Use factory methods for object creation
+  use_factory_methods: true
+  
+  # Event naming style: past-tense | present-tense
+  # past-tense: OrderCreated, UserRegistered
+  # present-tense: OrderCreate, UserRegister
+  event_naming: "past-tense"
+
+# -----------------------------------------------------------------------------
+# Workflow Behavior
+# -----------------------------------------------------------------------------
+behavior:
+  # Auto-confirm minor changes without asking
+  auto_confirm_minor_changes: false
+  
+  # Show reasoning and explanations in responses
+  show_reasoning: true
+  
+  # Generate detailed reports
+  detailed_reports: true
+  
+  # Ask clarifying questions when requirements are ambiguous
+  ask_for_clarification: true
+
+# -----------------------------------------------------------------------------
+# Output Settings
+# -----------------------------------------------------------------------------
+output:
+  # Default output folder for generated files
+  folder: ".output"
+  
+  # Show verbose logging during output
+  verbose: false
+  
+  # Generate changelog for modifications
+  generate_changelog: true
+  
+  # Backup existing files before overwriting
+  backup_before_overwrite: true
+
+# -----------------------------------------------------------------------------
+# Requirements Document Configuration
+# -----------------------------------------------------------------------------
+requirements:
+  # Directory for requirement documents
+  folder: "requirements"
+  
+  # Supported document formats
+  supported_formats:
+    - "*.md"
+    - "*.txt"
+    - "*.json"
+    - "*.yaml"
+  
+  # Keywords for automatic parsing
+  auto_parse_keywords:
+    - "User Story"
+    - "PRD"
+    - "Requirements"
+    - "Epic"
+    - "Feature"
+    - "Acceptance Criteria"
+
+# -----------------------------------------------------------------------------
+# Review Settings
+# -----------------------------------------------------------------------------
+review:
+  # Auto-trigger review after implementation
+  auto_review: true
+  
+  # Review verbosity: minimal | normal | detailed
+  verbosity: "normal"
+  
+  # Check for security issues
+  check_security: true
+  
+  # Check for performance issues
+  check_performance: true
+
+# -----------------------------------------------------------------------------
+# Custom Practices (Optional)
+# -----------------------------------------------------------------------------
+# Point to a file containing your team's additional practices and conventions
+custom_practices:
+  # Path to custom practices file (relative to .ai-agents/)
+  file_path: "knowledge/project/team-conventions.md"
+  
+  # Whether custom practices override default knowledge
+  override_defaults: false

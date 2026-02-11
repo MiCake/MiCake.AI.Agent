@@ -12,7 +12,6 @@ AI agents must follow rules in `.rule/README.md` when generating files in this d
 |------|-------------|
 | `project-structure.yaml` | Project code structure cache |
 | `domain-model.yaml` | Domain model summary |
-| `module-dependencies.yaml` | Module dependency graph |
 
 ## Usage
 

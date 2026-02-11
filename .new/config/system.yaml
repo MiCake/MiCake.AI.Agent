@@ -1,0 +1,123 @@
+# =============================================================================
+# AI Agent Framework - System Configuration
+# =============================================================================
+# System-level default settings. These are the base defaults that can be
+# overridden by adapter configs, pattern configs, and user preferences.
+# =============================================================================
+
+system:
+  version: "1.0"
+  name: "AI Agent Workflow Framework"
+  
+  # ---------------------------------------------------------------------------
+  # Directory Configuration
+  # ---------------------------------------------------------------------------
+  directories:
+    agents: "agents/"
+    config: "config/"
+    knowledge: "knowledge/"
+    templates: "templates/"
+    workflows: "workflows/"
+    context: "context/"
+    changes: "changes/"
+    requirements: "requirements/"
+  
+  # ---------------------------------------------------------------------------
+  # File Format Preferences
+  # ---------------------------------------------------------------------------
+  formats:
+    # Structured data format: yaml | json
+    structured_data: "yaml"
+    
+    # Document format
+    documents: "markdown"
+    
+    # Line endings: lf | crlf
+    line_endings: "lf"
+    
+    # File encoding
+    encoding: "utf-8"
+  
+  # ---------------------------------------------------------------------------
+  # Interaction Configuration
+  # ---------------------------------------------------------------------------
+  interaction:
+    # Confirm with user before generating code
+    confirm_before_generate: true
+    
+    # Confirm with user before handing off to another agent
+    confirm_before_handoff: true
+    
+    # Show verbose logging during operations
+    verbose_logging: false
+    
+    # Maximum retries for failed operations
+    max_retries: 3
+    
+  # ---------------------------------------------------------------------------
+  # Output Rules
+  # ---------------------------------------------------------------------------
+  output:
+    # Maximum YAML nesting depth
+    max_nesting_depth: 3
+    
+    # Avoid prose in machine-readable files
+    avoid_prose: true
+    
+    # No emojis or decorative characters
+    no_emojis: true
+    
+    # Maximum description length in characters
+    max_description_length: 100
+
+# =============================================================================
+# Agent System Configuration
+# =============================================================================
+agents:
+  # Default agent to activate when no specific agent is requested
+  default: "conductor"
+  
+  # Enable custom agents from _custom/ directory
+  enable_custom_agents: true
+  
+  # Agent activation timeout (seconds)
+  activation_timeout: 30
+
+# =============================================================================
+# Workflow Configuration
+# =============================================================================
+workflows:
+  # Enable workflow status tracking
+  track_status: true
+  
+  # Auto-save workflow state on each phase completion
+  auto_save_state: true
+  
+  # Default confirmation behavior for phases
+  default_confirmation: true
+
+# =============================================================================
+# Knowledge Base Configuration
+# =============================================================================
+knowledge:
+  # Auto-load core knowledge for all agents
+  auto_load_core: true
+  
+  # Cache knowledge files for faster access
+  enable_cache: true
+  
+  # Maximum knowledge file size (KB)
+  max_file_size: 500
+
+# =============================================================================
+# Change Management Configuration
+# =============================================================================
+changes:
+  # Change ID format template
+  id_format: "CR-{YYYYMMDD}-{XXX}"
+  
+  # Auto-archive completed changes after N days
+  auto_archive_days: 30
+  
+  # Maximum pending changes allowed
+  max_pending: 5

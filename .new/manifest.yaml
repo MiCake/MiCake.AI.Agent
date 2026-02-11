@@ -1,0 +1,175 @@
+# =============================================================================
+# AI Agent Workflow Framework - System Manifest
+# =============================================================================
+# This file defines the system-level metadata, capabilities, and configuration
+# for the multi-agent collaboration framework.
+# =============================================================================
+
+version: "1.0"
+name: "AI Agent Workflow Framework"
+description: "Multi-agent collaboration framework for software development"
+
+# -----------------------------------------------------------------------------
+# Technology Stack Adapter
+# -----------------------------------------------------------------------------
+# Adapters provide language-specific terminology, templates, and commands
+adapter:
+  # Currently active adapter
+  active: "dotnet"
+  
+  # Available adapters
+  available:
+    - id: "dotnet"
+      name: ".NET / C#"
+      config: "config/adapters/dotnet.yaml"
+    - id: "java"
+      name: "Java / Spring"
+      config: "config/adapters/java.yaml"
+    - id: "python"
+      name: "Python"
+      config: "config/adapters/python.yaml"
+    - id: "typescript"
+      name: "TypeScript / Node.js"
+      config: "config/adapters/typescript.yaml"
+    - id: "go"
+      name: "Go"
+      config: "config/adapters/go.yaml"
+
+# -----------------------------------------------------------------------------
+# Architecture Pattern Packs
+# -----------------------------------------------------------------------------
+# Pattern packs provide domain-specific knowledge, terminology, and templates
+patterns:
+  # Currently active pattern pack
+  active: "ddd"
+  
+  # Available pattern packs
+  available:
+    - id: "ddd"
+      name: "Domain-Driven Design"
+      path: "knowledge/patterns/ddd/"
+    - id: "clean-architecture"
+      name: "Clean Architecture"
+      path: "knowledge/patterns/clean-architecture/"
+    - id: "hexagonal"
+      name: "Hexagonal Architecture"
+      path: "knowledge/patterns/hexagonal/"
+    - id: "cqrs"
+      name: "CQRS Pattern"
+      path: "knowledge/patterns/cqrs/"
+    - id: "layered"
+      name: "Layered Architecture"
+      path: "knowledge/patterns/layered/"
+    - id: "microservices"
+      name: "Microservices"
+      path: "knowledge/patterns/microservices/"
+
+# -----------------------------------------------------------------------------
+# Agent Registry
+# -----------------------------------------------------------------------------
+# Defines all available agents and their configurations
+agents:
+  conductor:
+    file: "agents/conductor.agent.md"
+    required: true
+    name: "Conductor"
+    description: "Task coordinator and dispatcher - understands requirements and routes to appropriate agents"
+    
+  analyst:
+    file: "agents/analyst.agent.md"
+    required: true
+    name: "Analyst"
+    description: "Requirements analysis expert - extracts concepts from PRD/User Stories"
+    
+  architect:
+    file: "agents/architect.agent.md"
+    required: true
+    name: "Architect"
+    description: "System architecture designer - creates designs and plans"
+    
+  developer:
+    file: "agents/developer.agent.md"
+    required: true
+    name: "Developer"
+    description: "Code implementation specialist - writes production code"
+    
+  reviewer:
+    file: "agents/reviewer.agent.md"
+    required: true
+    name: "Reviewer"
+    description: "Code quality reviewer - ensures standards and best practices"
+    
+  tester:
+    file: "agents/tester.agent.md"
+    required: false
+    name: "Tester"
+    description: "Quality assurance engineer - validates against requirements"
+    
+  advisor:
+    file: "agents/advisor.agent.md"
+    required: false
+    name: "Advisor"
+    description: "Domain and framework consultant - provides expert guidance"
+
+# -----------------------------------------------------------------------------
+# Workflow Registry
+# -----------------------------------------------------------------------------
+# Defines available workflows and their configurations
+workflows:
+  requirement-to-code:
+    file: "workflows/core/requirement-to-code.workflow.md"
+    name: "Requirement to Code"
+    description: "Transform requirements into working code"
+    
+  requirement-change:
+    file: "workflows/core/requirement-change.workflow.md"
+    name: "Requirement Change"
+    description: "Handle requirement changes systematically"
+    
+  code-review:
+    file: "workflows/core/code-review.workflow.md"
+    name: "Code Review"
+    description: "Comprehensive code review process"
+
+# -----------------------------------------------------------------------------
+# Knowledge Base Configuration
+# -----------------------------------------------------------------------------
+knowledge:
+  # Core knowledge (always loaded)
+  core: "knowledge/core/"
+  
+  # Pattern-specific knowledge (based on active pattern)
+  patterns: "knowledge/patterns/${patterns.active}/"
+  
+  # Project-specific knowledge
+  project: "knowledge/project/"
+
+# -----------------------------------------------------------------------------
+# Template Configuration
+# -----------------------------------------------------------------------------
+templates:
+  # Template engine (handlebars | mustache | jinja2)
+  engine: "handlebars"
+  
+  # Language-specific templates (based on active adapter)
+  language: "templates/${adapter.active}/"
+  
+  # Abstract template definitions
+  abstract: "templates/abstract/"
+  
+  # Documentation templates
+  docs: "templates/docs/"
+
+# -----------------------------------------------------------------------------
+# Directory Structure
+# -----------------------------------------------------------------------------
+directories:
+  root: ".ai-agents"
+  agents: "agents/"
+  config: "config/"
+  knowledge: "knowledge/"
+  templates: "templates/"
+  workflows: "workflows/"
+  context: "context/"
+  changes: "changes/"
+  requirements: "requirements/"

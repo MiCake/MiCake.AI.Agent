@@ -1,0 +1,84 @@
+# Architecture Model Context
+
+# Overall architecture style
+architecture:
+  style: "${architecture_style}"  # layered, clean, hexagonal, microservices
+  pattern: "${active_pattern}"    # ddd, crud, cqrs
+  description: "Brief description of architectural approach"
+
+# Layer definitions and responsibilities
+layers:
+  - name: "Domain"
+    level: 0  # Core - no outward dependencies
+    responsibilities:
+      - "Define business entities and rules"
+      - "Express domain concepts"
+      - "Enforce business invariants"
+    may_depend_on: []
+    
+  - name: "Application"
+    level: 1
+    responsibilities:
+      - "Orchestrate domain operations"
+      - "Define use cases"
+      - "Handle transactions"
+    may_depend_on:
+      - "Domain"
+    
+  - name: "Infrastructure"
+    level: 2
+    responsibilities:
+      - "Implement persistence"
+      - "Integrate external systems"
+      - "Provide technical services"
+    may_depend_on:
+      - "Domain"
+      - "Application"
+    
+  - name: "Presentation"
+    level: 3
+    responsibilities:
+      - "Handle HTTP requests"
+      - "Present data to clients"
+      - "Validate input"
+    may_depend_on:
+      - "Application"
+
+# Key architectural decisions (ADRs)
+decisions:
+  - id: "ADR-001"
+    date: "${date}"
+    title: "Example: Use Repository Pattern"
+    decision: "We will use the repository pattern for data access"
+    rationale: "Provides abstraction over persistence and enables testing"
+    status: "accepted"  # accepted, deprecated, superseded
+
+# Patterns in use
+patterns:
+  # List patterns actively used in this project
+  structural:
+    - name: "Repository"
+      purpose: "Abstract data access"
+    - name: "Factory"
+      purpose: "Complex object creation"
+      
+  behavioral:
+    - name: "Command/Query Separation"
+      purpose: "Separate read and write operations"
+
+# Integration points
+integrations:
+  # External systems the project integrates with
+  - name: "${integration_name}"
+    type: "api"  # api, database, message_queue
+    description: "What this integration does"
+    
+# Quality attributes
+quality_attributes:
+  - attribute: "Maintainability"
+    priority: "high"
+    approach: "Clean architecture, SOLID principles"
+    
+  - attribute: "Testability"
+    priority: "high"
+    approach: "Dependency injection, interface abstractions"

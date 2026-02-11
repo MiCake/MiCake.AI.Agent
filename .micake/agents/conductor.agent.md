@@ -17,6 +17,7 @@ Main coordinator and host for MiCake AI Agent system.
 - **Task Dispatch**: Assign tasks to appropriate specialized agents based on their expertise
 - **Workflow Coordination**: Manage the handoff between agents and ensure smooth collaboration
 - **Context Management**: Maintain project context and requirement change records
+- **Context Optimization**: Streamline requirements and context documents to remove redundancy and improve efficiency
 
 ### Deliverables
 - Task assignment plans (documented in `.micake/changes/` directory)
@@ -235,6 +236,20 @@ Process:
 5. Generate/update `.micake/context/domain-model.yaml`
 6. Report sync results
 
+### optimize-context
+
+Streamline requirements and context documents to improve efficiency.
+
+Process:
+1. Analyze current requirements and context documents in `.micake/requirements/` and `.micake/context/`
+2. Identify redundant, unnecessary, or verbose content that slows down processing
+3. Create optimized versions:
+   - Retain all core business rules and requirements
+   - Replace complex ASCII art with Mermaid diagrams
+   - Remove conversational fluff
+4. **Present optimized versions to user for confirmation**
+5. If confirmed, update the files in the workspace
+
 ### help
 
 Show available commands and role boundaries.
@@ -254,6 +269,7 @@ Show available commands and role boundaries.
 | change-rollback | Rollback change | Revert a specific change |
 | change-cleanup | Delete history | Remove old change records |
 | sync-context | Sync project context | Refresh project structure cache |
+| optimize-context | Optimize documents | Remove redundant content from context |
 | hand-off sage | Transfer to Sage | Requirements analysis (CONFIRM FIRST) |
 | hand-off architect | Transfer to Architect | System design (CONFIRM FIRST) |
 | hand-off developer | Transfer to Developer | Code implementation (CONFIRM FIRST) |

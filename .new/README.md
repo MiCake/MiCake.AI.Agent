@@ -7,42 +7,38 @@ A technology-agnostic framework for AI-assisted software development using multi
 This framework provides a structured approach to AI-assisted development through:
 
 - **Multiple Specialized Agents**: Each agent has a specific role (analyst, architect, developer, reviewer, etc.)
-- **Configurable Adapters**: Support for different languages and frameworks (.NET, Java, Python, etc.)
+- **Skills System**: Modular capabilities loaded on-demand for efficiency
 - **Pattern Packs**: Pre-built knowledge for common patterns (DDD, Clean Architecture, etc.)
 - **Workflow Orchestration**: Defined processes for common development scenarios
 - **Knowledge Base**: Reusable principles and best practices
+- **GitHub Copilot Integration**: Custom instructions for seamless Copilot usage
 
 ## Quick Start
 
-### 1. Configure Your Project
+### Option 1: Auto-Configure (Recommended)
 
-Edit `manifest.yaml` to set your adapter and patterns:
+Simply ask the Conductor agent:
+
+```
+@agent auto-configure
+```
+
+This will:
+1. Scan your project structure
+2. Detect language, framework, and patterns
+3. Generate all configuration files
+4. Optionally create project-specific templates
+
+### Option 2: Manual Configuration
+
+Edit `manifest.yaml` to set your patterns:
 
 ```yaml
-adapters:
-  active: "dotnet"  # or java, python, etc.
-  
 patterns:
   active: "ddd"     # or clean-architecture, etc.
 ```
 
-### 2. Update Project Context
-
-Edit `context/project-structure.yaml`:
-
-```yaml
-project:
-  name: "Your Project"
-  root: "/path/to/project"
-```
-
-### 3. Create a Requirement
-
-Create `requirements/your-feature.md` using the template.
-
-### 4. Start the Workflow
-
-Invoke the Conductor agent to process your requirement.
+Then update project context in `context/project-structure.yaml`.
 
 ---
 
@@ -53,9 +49,9 @@ Invoke the Conductor agent to process your requirement.
 │                    manifest.yaml (System Root)                   │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
-│  │   Adapters   │  │   Patterns   │  │      Workflows       │  │
-│  │  .NET, Java  │  │  DDD, Clean  │  │  Req→Code, Review   │  │
-│  │  Python...   │  │  Arch...     │  │                      │  │
+│  │   Skills     │  │   Patterns   │  │      Workflows       │  │
+│  │  On-demand   │  │  DDD, Clean  │  │  Req→Code, Review   │  │
+│  │  Modules     │  │  Arch...     │  │                      │  │
 │  └──────────────┘  └──────────────┘  └──────────────────────┘  │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌──────────────────────────────────────────────────────────┐  │
@@ -67,7 +63,7 @@ Invoke the Conductor agent to process your requirement.
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
 │  │  Knowledge   │  │  Templates   │  │      Context         │  │
 │  │  Core/Patt.  │  │  Abstract/   │  │  Project, Arch       │  │
-│  │  /Project    │  │  Lang-spec   │  │                      │  │
+│  │  /Project    │  │  _project/   │  │                      │  │
 │  └──────────────┘  └──────────────┘  └──────────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -81,13 +77,12 @@ Invoke the Conductor agent to process your requirement.
 ├── manifest.yaml              # System configuration root
 ├── README.md                  # This file
 │
+├── .github/                   # GitHub integration
+│   └── copilot-instructions.md  # Copilot custom instructions
+│
 ├── config/                    # Configuration files
-│   ├── system.yaml           # System defaults
-│   ├── preferences.yaml      # User preferences
-│   └── adapters/             # Language/framework adapters
-│       ├── dotnet.yaml
-│       ├── java.yaml
-│       └── python.yaml
+│   ├── system.yaml           # System behavior settings
+│   └── preferences.yaml      # User preferences
 │
 ├── agents/                    # Agent definitions
 │   ├── conductor.agent.md    # Orchestration
@@ -98,6 +93,19 @@ Invoke the Conductor agent to process your requirement.
 │   ├── tester.agent.md       # Quality assurance
 │   ├── advisor.agent.md      # Technical consultation
 │   └── _custom/              # Custom agents
+│
+├── skills/                    # Modular capabilities
+│   ├── manifest.yaml         # Skill registry
+│   ├── core/                 # Core skills
+│   │   ├── code-analysis.skill.md
+│   │   ├── template-generation.skill.md
+│   │   ├── requirement-parsing.skill.md
+│   │   ├── review-execution.skill.md
+│   │   ├── test-generation.skill.md
+│   │   └── project-detection.skill.md
+│   ├── patterns/             # Pattern-specific skills
+│   │   └── ddd-modeling.skill.md
+│   └── _custom/              # Custom skills
 │
 ├── knowledge/                 # Knowledge base
 │   ├── core/                 # Universal principles
@@ -111,10 +119,9 @@ Invoke the Conductor agent to process your requirement.
 │
 ├── templates/                 # Code generation templates
 │   ├── _engine/              # Template engine config
-│   ├── abstract/             # Language-agnostic templates
-│   ├── dotnet/               # .NET templates
-│   ├── java/                 # Java templates
-│   └── python/               # Python templates
+│   ├── _project/             # Project-specific templates (auto-generated)
+│   ├── _custom/              # Custom templates
+│   └── abstract/             # Language-agnostic templates
 │
 ├── workflows/                 # Workflow definitions
 │   ├── core/
@@ -181,17 +188,19 @@ Code → Static Analysis → Design Review → Logic Review → Report
 
 ## Configuration
 
-### Selecting an Adapter
+### Auto-Configuration (Recommended)
 
-Adapters configure language-specific settings:
+Let the framework detect your project settings:
 
-```yaml
-# manifest.yaml
-adapters:
-  active: "dotnet"
+```
+@agent auto-configure
 ```
 
-Available adapters: `dotnet`, `java`, `python` (add more in `config/adapters/`)
+This scans your project and:
+- Detects language and framework
+- Identifies architecture patterns
+- Generates configuration files
+- Optionally creates project-specific templates
 
 ### Selecting a Pattern
 
@@ -216,16 +225,75 @@ code_comments: true
 explanation_detail: "standard"
 ```
 
+### System Behavior
+
+Configure system-level behavior:
+
+```yaml
+# config/system.yaml
+interaction:
+  confirm_before_generate: true
+  confirm_before_handoff: true
+
+output:
+  no_emojis: true
+  avoid_prose: true
+```
+
+---
+
+## Skills System
+
+Skills are modular capabilities that agents invoke on-demand, minimizing context loading overhead.
+
+### Core Skills
+
+| Skill | Purpose | Used By |
+|-------|---------|---------|
+| `code-analysis` | Analyze code structure | Developer, Reviewer, Architect |
+| `template-generation` | Generate code from templates | Developer |
+| `requirement-parsing` | Parse requirements documents | Analyst |
+| `review-execution` | Execute code review | Reviewer |
+| `test-generation` | Generate test code | Tester |
+| `project-detection` | Auto-detect project structure | Conductor |
+
+### Pattern Skills
+
+| Skill | Purpose | Used By |
+|-------|---------|---------|
+| `ddd-modeling` | Domain modeling | Architect, Developer |
+
+### Adding Custom Skills
+
+1. Create `skills/_custom/{skill-name}.skill.md`
+2. Define context loading, capabilities, inputs/outputs
+3. Register in `skills/manifest.yaml`
+
+---
+
+## GitHub Copilot Integration
+
+The framework integrates with GitHub Copilot through custom instructions.
+
+### Quick Commands
+
+| Command | Description |
+|---------|-------------|
+| `@agent start` | Get started |
+| `@agent auto-configure` | Auto-detect and configure |
+| `@agent dispatch` | Route task to agents |
+| `@agent analyze` | Analyze requirements |
+| `@agent design` | Create architecture |
+| `@agent implement` | Build features |
+| `@agent review` | Review code |
+| `@agent test` | Run tests |
+| `@agent consult` | Get advice |
+
+See `.github/copilot-instructions.md` for full documentation.
+
 ---
 
 ## Extending the Framework
-
-### Adding a New Adapter
-
-1. Create `config/adapters/{adapter-name}.yaml`
-2. Define terminology, conventions, types
-3. Add language templates in `templates/{adapter-name}/`
-4. Register in `manifest.yaml`
 
 ### Adding a New Pattern
 
@@ -245,6 +313,14 @@ explanation_detail: "standard"
 2. Define phases and transitions
 3. Register in `manifest.yaml`
 
+### Adding Project Templates
+
+Use `auto-configure` to generate templates automatically, or:
+
+1. Create templates in `templates/_project/`
+2. Use template variables (see `templates/_project/README.md`)
+3. Templates will be used by `template-generation` skill
+
 ---
 
 ## Migration from Original MiCake.AI.Agent
@@ -259,9 +335,9 @@ If migrating from the original MiCake-specific implementation:
 
 2. DDD knowledge is now in `knowledge/patterns/ddd/`
 
-3. .NET specifics are now in `config/adapters/dotnet.yaml`
+3. Language-specific settings are auto-detected via `auto-configure`
 
-4. Update `manifest.yaml` with your configuration
+4. Use `@agent auto-configure` to set up the framework for your project
 
 ---
 

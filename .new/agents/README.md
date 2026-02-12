@@ -70,12 +70,14 @@ This AI Agent System provides an intelligent development assistant that helps de
 │   └── _custom/                     # Custom agents
 │
 ├── config/                          # Configuration
-│   ├── system.yaml                  # System defaults
-│   ├── preferences.yaml             # User preferences
-│   └── adapters/                    # Tech stack adapters
-│       ├── dotnet.yaml
-│       ├── java.yaml
-│       └── python.yaml
+│   ├── system.yaml                  # System behavior settings
+│   └── preferences.yaml             # User preferences
+│
+├── skills/                          # Modular capabilities
+│   ├── manifest.yaml                # Skill registry
+│   ├── core/                        # Core skills
+│   ├── patterns/                    # Pattern-specific skills
+│   └── _custom/                     # Custom skills
 │
 ├── knowledge/                       # Knowledge base
 │   ├── core/                        # Core knowledge
@@ -87,16 +89,15 @@ This AI Agent System provides an intelligent development assistant that helps de
 │
 ├── templates/                       # Code templates
 │   ├── abstract/                    # Abstract definitions
-│   ├── dotnet/                      # .NET templates
-│   ├── java/                        # Java templates
-│   └── python/                      # Python templates
+│   ├── _project/                    # Project-specific (auto-generated)
+│   └── _custom/                     # Custom templates
 │
 ├── workflows/                       # Workflow definitions
 │   ├── core/
 │   │   ├── requirement-to-code.workflow.md
 │   │   ├── requirement-change.workflow.md
 │   │   └── code-review.workflow.md
-│   └── extensions/
+│   └── _custom/
 │
 ├── context/                         # Project context
 │   ├── project-structure.yaml
@@ -112,13 +113,12 @@ This AI Agent System provides an intelligent development assistant that helps de
 
 ## Configuration
 
-### Selecting Technology Stack
+### Auto-Configuration (Recommended)
 
-Edit `manifest.yaml`:
+Use the Conductor's auto-configure command to automatically set up your project:
 
-```yaml
-adapter:
-  active: "dotnet"  # or "java", "python", etc.
+```
+@agent auto-configure
 ```
 
 ### Selecting Architecture Pattern

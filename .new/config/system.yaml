@@ -1,8 +1,11 @@
 # =============================================================================
 # AI Agent Framework - System Configuration
 # =============================================================================
-# System-level default settings. These are the base defaults that can be
-# overridden by adapter configs, pattern configs, and user preferences.
+# System-level behavior settings that control how agents operate.
+# This file is loaded by ALL agents during activation.
+#
+# Referenced from: manifest.yaml (system_config)
+# Loaded by: All agents via "LOAD system config from config/system.yaml"
 # =============================================================================
 
 system:
@@ -95,19 +98,6 @@ workflows:
   
   # Default confirmation behavior for phases
   default_confirmation: true
-
-# =============================================================================
-# Knowledge Base Configuration
-# =============================================================================
-knowledge:
-  # Auto-load core knowledge for all agents
-  auto_load_core: true
-  
-  # Cache knowledge files for faster access
-  enable_cache: true
-  
-  # Maximum knowledge file size (KB)
-  max_file_size: 500
 
 # =============================================================================
 # Change Management Configuration

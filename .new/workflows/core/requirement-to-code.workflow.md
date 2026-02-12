@@ -103,7 +103,7 @@ triggers:
 - Analyzed requirements
 - Current architecture (`context/architecture-model.yaml`)
 - Pattern guidelines (`knowledge/patterns/${pattern}/`)
-- Adapter conventions (`config/adapters/${adapter}.yaml`)
+- Project conventions (`context/project-structure.yaml`)
 
 **Output**:
 - Technical design (`changes/{change-id}/design.md`)

@@ -1,7 +1,7 @@
 # Template Variables
 
 # This file defines variables available in templates.
-# Variables come from three sources: system, adapter, and runtime input.
+# Variables come from two sources: system and project context (auto-detected).
 
 # System Variables (always available)
 system:
@@ -9,25 +9,25 @@ system:
   agent_version: "Framework version"
   generator: "Agent that generated the code"
 
-# Adapter Variables (from active adapter)
-# These are populated from config/adapters/{adapter}.yaml
-adapter:
+# Project Variables (from project detection)
+# These are populated from context/project-structure.yaml (auto-detected)
+project:
   # Namespace/Package
-  namespace: "From adapter.naming.namespace_style"
-  package: "From adapter.naming.namespace_style"
+  namespace: "From project.conventions.namespace"
+  package: "From project.conventions.package"
   
   # File patterns
-  file_extension: "From adapter.file_extension"
+  file_extension: "From project.language.extension"
   
-  # Type mappings
-  id_type: "From adapter.types.id"
-  string_type: "From adapter.types.string"
-  datetime_type: "From adapter.types.datetime"
-  list_type: "From adapter.types.list"
-  dictionary_type: "From adapter.types.dictionary"
+  # Type mappings (detected from project)
+  id_type: "From project.types.id"
+  string_type: "From project.types.string"
+  datetime_type: "From project.types.datetime"
+  list_type: "From project.types.list"
+  dictionary_type: "From project.types.dictionary"
   
   # Framework specifics
-  entity_base: "From adapter.framework.entity_base"
+  entity_base: "From project.framework.entity_base"
   repository_base: "From adapter.framework.repository_base"
 
 # Pattern Variables (from active pattern)

@@ -1,0 +1,99 @@
+# Skills Registry
+
+# Skill manifest - defines all available skills
+
+version: "1.0"
+
+# Core skills - available for all projects
+core:
+  - id: "code-analysis"
+    path: "skills/core/code-analysis.skill.md"
+    description: "Analyze code structure, quality, and patterns"
+    
+  - id: "template-generation"
+    path: "skills/core/template-generation.skill.md"
+    description: "Generate code from templates"
+    
+  - id: "requirement-parsing"
+    path: "skills/core/requirement-parsing.skill.md"
+    description: "Parse and analyze requirements from PRD"
+    
+  - id: "review-execution"
+    path: "skills/core/review-execution.skill.md"
+    description: "Execute code review against standards"
+    
+  - id: "test-generation"
+    path: "skills/core/test-generation.skill.md"
+    description: "Generate test cases and test code"
+    
+  - id: "project-detection"
+    path: "skills/core/project-detection.skill.md"
+    description: "Detect project structure and technology stack"
+
+# Pattern-specific skills - loaded based on active pattern
+patterns:
+  ddd:
+    - id: "ddd-modeling"
+      path: "skills/patterns/ddd-modeling.skill.md"
+      description: "Domain modeling using DDD tactical patterns"
+      
+    - id: "aggregate-design"
+      path: "skills/patterns/aggregate-design.skill.md"
+      description: "Design aggregates and boundaries"
+      
+  clean-architecture:
+    - id: "clean-arch-design"
+      path: "skills/patterns/clean-arch-design.skill.md"
+      description: "Design using Clean Architecture principles"
+      
+    - id: "use-case-modeling"
+      path: "skills/patterns/use-case-modeling.skill.md"
+      description: "Model use cases and application logic"
+
+# Agent to skill mapping - which agents can use which skills
+agent_skills:
+  conductor:
+    required:
+      - project-detection
+    optional: []
+    
+  analyst:
+    required:
+      - requirement-parsing
+    optional: []
+    
+  architect:
+    required:
+      - code-analysis
+    optional:
+      - ddd-modeling
+      - aggregate-design
+      - clean-arch-design
+      - use-case-modeling
+    
+  developer:
+    required:
+      - code-analysis
+      - template-generation
+    optional:
+      - ddd-modeling
+      - test-generation
+    
+  reviewer:
+    required:
+      - code-analysis
+      - review-execution
+    optional: []
+    
+  tester:
+    required:
+      - test-generation
+      - code-analysis
+    optional: []
+    
+  advisor:
+    required: []
+    optional:
+      - code-analysis
+      - ddd-modeling
+      - clean-arch-design
